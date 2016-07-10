@@ -27,16 +27,22 @@ RUN curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
 RUN yum -y install nodejs
 
 
-# install pm2
-RUN npm install -g pm2
-
-
 # install mongodb
 RUN mkdir -p /data/db /data/configdb
 VOLUME /data/db /data/configdb
 
 ADD etc/yum.repos.d/mongodb.repo /etc/yum.repos.d/mongodb.repo
 RUN yum install -y mongodb-org
+
+# install pm2
+RUN npm install -g pm2
+
+# install pm2-logrotate
+# RUN pm2 install pm2-logrotate
+# RUN pm2 set pm2-logrotate:interval_unit ‘DD'
+
+# install pm2-mongodb
+# RUN pm2 install pm2-mongodb
 
 # start mongod with pm2
 # RUN pm2 start mongod

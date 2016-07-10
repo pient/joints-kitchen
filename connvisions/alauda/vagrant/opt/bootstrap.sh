@@ -9,5 +9,11 @@ yum update && yum install -y epel-release
 curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -
 yum -y install nodejs
 
+# 创建用户组
+
+# 创建管理员
+
+
+
 
 
