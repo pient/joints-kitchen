@@ -5,34 +5,34 @@
 Vagrant.require_version ">= 1.8.1"
 
 # 设置虚拟机环境变量
-ENV["NODE_ENV"] = "development"
+ENV["NODE_ENV"] = "deploy"
 
 Vagrant.configure("2") do |config|
   # 基础box
-  config.vm.box = "centos/6" 
+  config.vm.box = "centos/7" 
 
   # 同步文件夹
   # 若出现一下错误：Failed to mount folders in Linux guest. This is usually because the "vboxsf" file system is not available.
   # 尝试执行命令: vagrant plugin install vagrant-vbguest
 
   # src为原文件夹，src/website为vagrant中文件夹
-  config.vm.synced_folder "opt/", "/opt",
-    owner: "vagrant", group: "vagrant"
+  # config.vm.synced_folder "opt/", "/opt",
+    # owner: "vagrant", group: "vagrant"
 
   # 加disabled: true, 禁用同步文件夹
-  config.vm.synced_folder ".", "/vagrant", disabled: true
+  # config.vm.synced_folder ".", "/vagrant", disabled: true
 
   # 设置ip地址
-  config.vm.network "private_network", ip: "192.168.6.16", auto_correct: true
+  # config.vm.network "private_network", ip: "192.168.6.16", auto_correct: true
 
   # 网络端口映射
-  config.vm.network :forwarded_port, guest: 8080, host: 4567, auto_correct: true
+  # config.vm.network :forwarded_port, guest: 8080, host: 4567, auto_correct: true
 
   # loopback arc端口映射
-  config.vm.network :forwarded_port, guest: 46849, host: 4567, auto_correct: true
+  # config.vm.network :forwarded_port, guest: 46849, host: 4567, auto_correct: true
 
   # provision, 第一次运行时执行(vagrant up, vagrant reload时执行，通常用于初始化环境)
-  config.vm.provision :shell, path: "opt/bootstrap.sh"
+  # config.vm.provision :shell, path: "opt/bootstrap.sh"
 
 
 end
